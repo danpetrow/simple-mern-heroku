@@ -1,0 +1,15 @@
+{
+  "name": "simple-mern-heroku",
+  "version": "1.0.0",
+  "description": "a boilerplate for deploying a mern app to heroku",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start":"node server.js"
+  },
+  "author": "Dan Petrow",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
