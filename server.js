@@ -1,17 +1,19 @@
 const express = require('express');
 const session = require('express-session');
-require('dotenv').config()
+const connection = require('./model/db')
+
 
 //database
-const mysql = require("mysql");
-require('dotenv').config()
+// const mysql = require("mysql");
+// require('dotenv').config()
 
-const connection = mysql.createPool({
-  host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.db
-});
+// const connection = mysql.createPool({
+//   host: process.env.host,
+//   user: process.env.user,
+//   password: process.env.password,
+//   database: process.env.db
+// });
+
 const app = express();
 
 app.use(session({
