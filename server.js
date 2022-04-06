@@ -3,7 +3,7 @@ const session = require('express-session');
 const connection = require('./model/db')
 
 
-//database
+//database but here
 // const mysql = require("mysql");
 // require('dotenv').config()
 
