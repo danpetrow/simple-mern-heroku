@@ -35,11 +35,11 @@ app.use('/email',email)
 //get and serve index.html
 app.use(express.static('./public'))
 
+//handle errors
 app.all('*',(req,res)=>{
   res.status(404).send('looks like this page doesnt exist')
   res.end
-  })    
-
+  })  
 
 // Start the server
 const PORT = process.env.PORT || 8080;
