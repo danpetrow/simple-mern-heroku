@@ -27,12 +27,18 @@ app.use(express.urlencoded({ extended: true }));
 //routers
 const auth = require('./routes/auth')
 const home = require('./routes/home')
+const email = require('./routes/emailList')
 
 app.use('/auth',auth)
 app.use('/home',home)
+app.use('/email',email)
 //get and serve index.html
 app.use(express.static('./public'))
 
+app.all('*',(req,res)=>{
+  res.status(404).send('looks like this page doesnt exist')
+  res.end
+  })    
 
 
 // Start the server
