@@ -1,3 +1,4 @@
+// API Project - Register - Login - Get-user | will delete after I have get-user working
 const express = require('express');
 const router = express.Router();
 const connection  = require('./model/db');
@@ -5,6 +6,7 @@ const { signupValidation, loginValidation } = require('./validation');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 router.post('/register', signupValidation, (req, res, next) => {
 connection.query(
 `SELECT * FROM users WHERE LOWER(email) = LOWER(${connection.escape(
@@ -46,6 +48,7 @@ msg: 'The user has been registerd with us!'
 }
 );
 });
+
 router.post('/login', loginValidation, (req, res, next) => {
 connection.query(
 `SELECT * FROM users WHERE email = ${connection.escape(req.body.email)};`,
@@ -93,6 +96,7 @@ msg: 'Username or password is incorrect!'
 }
 );
 });
+
 router.post('/get-user', signupValidation, (req, res, next) => {
 if(
 !req.headers.authorization ||
@@ -110,4 +114,5 @@ if (error) throw error;
 return res.send({ error: false, data: results[0], message: 'Fetch Successfully.' });
 });
 });
+
 module.exports = router;

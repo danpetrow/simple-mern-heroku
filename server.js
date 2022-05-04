@@ -1,7 +1,8 @@
-const express = require('express');
-const session = require('express-session');
+const express = require('express')
+const session = require('express-session')
 const connection = require('./model/db')
-
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 //database but here
 // const mysql = require("mysql");
@@ -16,24 +17,29 @@ const connection = require('./model/db')
 
 const app = express();
 
+app.use(bodyParser.json())
+
 app.use(session({
-	secret: 'secret',
+	secret: 'the-super-strong-secrect',
 	resave: true,
 	saveUninitialized: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 //routers
-const auth = require('./routes/auth')
+app.use(express.static('./public'))
+
+const login = require('./routes/login')
 const home = require('./routes/home')
 const email = require('./routes/emailList')
+const register = require('./routes/register')
 
-app.use('/auth',auth)
+app.use('/login',login)
 app.use('/home',home)
 app.use('/email',email)
-//get and serve index.html
-app.use(express.static('./public'))
+app.use('/register',register)
 
 //handle errors
 app.all('*',(req,res)=>{

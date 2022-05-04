@@ -1,3 +1,4 @@
+//API Project - Register - Login - Get-user | is good.
 const { check } = require('express-validator');
  
 exports.signupValidation = [
