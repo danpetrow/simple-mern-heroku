@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 
 //database but here
 // const mysql = require("mysql");
-// require('dotenv').config()
+require('dotenv').config()
 
 // const connection = mysql.createPool({
 //   host: process.env.host,
@@ -20,7 +20,7 @@ const app = express();
 app.use(bodyParser.json())
 
 app.use(session({
-	secret: 'the-super-strong-secrect',
+	secret: process.env.secret,
 	resave: true,
 	saveUninitialized: true
 }));
