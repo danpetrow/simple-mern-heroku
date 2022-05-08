@@ -29,13 +29,13 @@ app.use(cors());
 app.use(express.static('./public'))
 
 //import javascript to use for routes -> 
-const login = require('./routes/login')
+const auth = require('./routes/auth')
 const home = require('./routes/home')
 const email = require('./routes/emailList')
 const register = require('./routes/register')
 const user = require('./routes/user')
 //assign routes to url
-app.use('/login',login)
+app.use('/login',auth)
 app.use('/home',home)
 app.use('/email',email)
 app.use('/register',register)

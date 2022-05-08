@@ -27,7 +27,7 @@ router.post('/', signupValidation, (req, res, next) => {
     } else {
     // has hashed pw => add to database
     connection.query(
-    `INSERT INTO users (name, email, password) VALUES ('${req.body.name}', ${connection.escape(
+    `INSERT INTO users (name, email, password) VALUES (${connection.escape(req.body.name)}, ${connection.escape(
     req.body.email
     )}, ${connection.escape(hash)})`,
     (err, result) => {
@@ -38,7 +38,7 @@ router.post('/', signupValidation, (req, res, next) => {
     });
     }
     return res.status(201).send({
-    msg: 'The user has been registerd with us!'
+    msg: 'The user has been registered with us!'
     });
     }
     );
