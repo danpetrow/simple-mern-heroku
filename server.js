@@ -41,7 +41,7 @@ app.use('/home',home)
 app.use('/email',email)
 app.use('/register',register)
 app.use('/api/users', user)
-app.use('/products',product)
+app.use('/api/products',product)
 //handle errors
 app.all('*',(req,res)=>{
   res.status(404).send('looks like this page doesnt exist')
