@@ -31,13 +31,18 @@ router.post("/", verifyTokenAndAdmin, (req,res)=>{
         res.status(500).json(err)
     }
 })
-//todo for each req.body.xxx add to key to insert and add value to values
+//todo for each req.body.xxx add to key to insert and add value to values also check that product exists
 router.put("/:id", verifyTokenAndAdmin, (req,res)=>{
-    let newProduct = `${connection.escape(req.body.title)}, ${connection.escape(req.body.descr)}, ${connection.escape(req.body.img)}, ${connection.escape(req.body.categories)}, ${connection.escape(req.body.size)}, ${connection.escape(req.body.color)}, ${connection.escape(req.body.price)}`
     try{
         connection.query(
-            `INSERT INTO products (title, descr, img, categories, size, color, price) VALUES (${connection.escape(req.body.title)}, ${connection.escape(
-            req.body.descr)}, ${connection.escape(req.body.img)}, ${connection.escape(req.body.categories)}, ${connection.escape(req.body.size)}, ${connection.escape(req.body.color)}, ${connection.escape(req.body.price)})`,
+            `UPDATE products set title = ${connection.escape(req.body.title)},
+            descr = ${connection.escape(req.body.descr)}, 
+            img = ${connection.escape(req.body.img)},
+            categories = ${connection.escape(req.body.categories)},
+            size = ${connection.escape(req.body.size)},
+            color = ${connection.escape(req.body.color)},
+            price = ${connection.escape(req.body.price)}
+             where productId = ${req.params.id}`,
             (err, result) => {
             if (err) {
             throw err;
@@ -46,9 +51,7 @@ router.put("/:id", verifyTokenAndAdmin, (req,res)=>{
             });
             }
             return res.status(201).send({
-            msg: 'The product has been registered with us!',
-            id: result["insertId"],
-            newProduct
+            msg: "Product has been updated if it exists",
             });
             }
             )
