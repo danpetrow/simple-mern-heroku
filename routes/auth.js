@@ -37,7 +37,7 @@ router.post('/', loginValidation, (req, res, next) => {
 	});
 	}
 	if (bResult) {
-	const token = jwt.sign({id:result[0].id,isAdmin:result[0].isAdmin},process.env.secret,{ expiresIn: '1h' });
+	const token = jwt.sign({id:result[0].id,isAdmin:result[0].isAdmin},process.env.secret,{ expiresIn: '7d' });
 	connection.query(
 	`UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
 	);
