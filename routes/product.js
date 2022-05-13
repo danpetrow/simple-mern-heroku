@@ -99,10 +99,10 @@ router.get("/", (req,res)=>{
             res.status(500).json(err)
         }
     }
-    else if(req.params.category){
+    else if(req.query.category){
         try{
             connection.query(
-                `select * from products where categories like "%${req.params.category}%"`,
+                `select * from products where categories like "%${req.query.category}%"`,
                 (err, result) => {
                 if (err) {
                 throw err;
@@ -110,6 +110,7 @@ router.get("/", (req,res)=>{
                 msg: err
                 });
                 }
+
                 return res.status(201).send({
                     result: result
                 });
