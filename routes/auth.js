@@ -38,14 +38,15 @@ router.post('/', loginValidation, (req, res, next) => {
 	}
 	if (bResult) {
 	const token = jwt.sign({id:result[0].id,isAdmin:result[0].isAdmin},process.env.secret,{ expiresIn: '7d' });
+	const bToken = "Bearer " + token
 	connection.query(
 	`UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
 	);
-	return res.status(200).send({
-	msg: 'Logged in!',
-	token
-	//,user: result[0]
-	});
+	return res.status(200).cookie("token",bToken).send({
+		msg: 'Logged in!',
+		token
+		//,user: result[0]
+		});
 	}
 	return res.status(401).send({
 	msg: 'Username or password is incorrect!'

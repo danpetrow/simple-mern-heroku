@@ -6,8 +6,9 @@
   "scripts": {
     "test": "nodemon server.js",
     "start": "node server.js",
-    "start:prod": "node index.js",
-    "build": "cd client && npm install && npm run build"
+    "client": "npm start --prefix client",
+    "build": "cd client && npm install && npm run build",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\""
   },
   "author": "Dan Petrow",
   "license": "ISC",
@@ -20,6 +21,10 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.0"
   }
 }

@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const session = require('express-session')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -26,7 +27,14 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static('./public'))
+
+//Serve React Frontend
+app.use(express.static(path.join(__dirname, 'client/build')));
+ app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+ });
+//Serve Nodejs Frontend
+//app.use(express.static('./public'))
 
 //import javascript to use for routes -> 
 const auth = require('./routes/auth')
