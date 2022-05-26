@@ -45,6 +45,7 @@ const user = require('./routes/user')
 const product = require('./routes/product')
 const cart = require('./routes/cart')
 const order = require('./routes/order')
+const api = require('./routes/api')
 //assign routes to url
 app.use('/login',auth)
 app.use('/home',home)
@@ -54,6 +55,7 @@ app.use('/api/users', user)
 app.use('/api/products',product)
 app.use('/api/carts',cart)
 app.use('/api/orders',order)
+app.use('/api',api)
 //handle errors
 app.all('*',(req,res)=>{
   res.status(404).send('looks like this page doesnt exist')
