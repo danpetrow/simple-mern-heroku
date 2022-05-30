@@ -42,11 +42,7 @@ router.post('/', loginValidation, (req, res, next) => {
 	connection.query(
 	`UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
 	);
-	return res.status(200).cookie("token",bToken).send({
-		msg: 'Logged in!',
-		token
-		//,user: result[0]
-		});
+	return res.status(200).cookie("token",bToken).redirect('/');
 	}
 	return res.status(401).send({
 	msg: 'Username or password is incorrect!'

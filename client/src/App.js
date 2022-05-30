@@ -10,7 +10,8 @@ import SignUp from './pages/signup';
 import Contact from './pages/contact';
 import NotFound from './pages/404'
 import Login from './components/Login';
-  
+import Products from './pages/products';
+
 function App(){
     return (
         <Router>
@@ -22,6 +23,7 @@ function App(){
             <Route path='/blogs' element={<Blogs/>} />
             <Route path='/sign-up' element={<SignUp/>} />
             <Route path='/login' element={<Login/>}/>
+            <Route path='/api/products' element={<Products/>}/>
             <Route path='*' element={<NotFound />} />
         </Routes>
         </Router>

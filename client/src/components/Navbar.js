@@ -16,8 +16,8 @@ const Navbar = () => {
           <NavLink to="/contact" activeStyle>
             Contact Us
           </NavLink>
-          <NavLink to="/blogs" activeStyle>
-            Blogs
+          <NavLink to="/api/products" activeStyle>
+            Shop
           </NavLink>
           <NavLink to="/login" activeStyle>
             Login
